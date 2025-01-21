@@ -1,18 +1,19 @@
 package com.example.outsourcingproject.domain.store.service;
 
 import com.example.outsourcingproject.auth.repository.OwnerAuthRepository;
-import com.example.outsourcingproject.domain.category.repository.StoreCategoryRepository;
-import com.example.outsourcingproject.common.entity.StoreCategory;
+import com.example.outsourcingproject.common.entity.MappingStoreCategory;
 import com.example.outsourcingproject.common.entity.Menu;
 import com.example.outsourcingproject.common.entity.Owner;
 import com.example.outsourcingproject.common.entity.Store;
-import com.example.outsourcingproject.common.entity.MappingStoreCategory;
+import com.example.outsourcingproject.common.entity.StoreCategory;
 import com.example.outsourcingproject.common.exception.CustomException;
 import com.example.outsourcingproject.common.exception.ErrorCode;
 import com.example.outsourcingproject.common.exception.badrequest.CategoryCountExcessException;
 import com.example.outsourcingproject.common.exception.badrequest.StoreInvalidCountExcessException;
 import com.example.outsourcingproject.common.exception.notfound.OwnerNotFoundException;
 import com.example.outsourcingproject.common.exception.notfound.StoreNotFoundException;
+import com.example.outsourcingproject.common.utils.JwtUtil;
+import com.example.outsourcingproject.domain.category.repository.StoreCategoryRepository;
 import com.example.outsourcingproject.domain.menu.repository.MenuRepository;
 import com.example.outsourcingproject.domain.store.dto.MenuDto;
 import com.example.outsourcingproject.domain.store.dto.request.CreateStoreRequestDto;
@@ -22,9 +23,8 @@ import com.example.outsourcingproject.domain.store.dto.response.StoreCategorySea
 import com.example.outsourcingproject.domain.store.dto.response.StoreNameSearchResponseDto;
 import com.example.outsourcingproject.domain.store.dto.response.StoreResponseDto;
 import com.example.outsourcingproject.domain.store.dto.response.UpdateStoreResponseDto;
-import com.example.outsourcingproject.mapping.MappingStoreCategoryRepository;
 import com.example.outsourcingproject.domain.store.repository.StoreRepository;
-import com.example.outsourcingproject.common.utils.JwtUtil;
+import com.example.outsourcingproject.mapping.MappingStoreCategoryRepository;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

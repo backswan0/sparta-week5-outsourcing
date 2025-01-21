@@ -8,13 +8,13 @@ import com.example.outsourcingproject.common.entity.Store;
 import com.example.outsourcingproject.common.exception.CustomException;
 import com.example.outsourcingproject.common.exception.ErrorCode;
 import com.example.outsourcingproject.common.exception.notfound.OrderNotFoundException;
+import com.example.outsourcingproject.common.utils.JwtUtil;
 import com.example.outsourcingproject.domain.order.OrderState;
 import com.example.outsourcingproject.domain.order.repository.OrderRepository;
 import com.example.outsourcingproject.domain.review.dto.request.CreateReviewRequestDto;
 import com.example.outsourcingproject.domain.review.dto.response.CreateReviewResponseDto;
 import com.example.outsourcingproject.domain.review.dto.response.FindReviewResponseDto;
 import com.example.outsourcingproject.domain.review.repository.ReviewRepository;
-import com.example.outsourcingproject.common.utils.JwtUtil;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -75,7 +75,6 @@ public class ReviewServiceImpl {
                 (review -> {
                     throw new CustomException(ErrorCode.DUPLICATE_REVIEW);
                 });
-
 
         // Dto 에서 리뷰 내용 가져오고, 리뷰 엔티티 만들어주기(엔티티 == 테이블)
         Review reviewToSave = new Review(

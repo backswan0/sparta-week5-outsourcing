@@ -32,15 +32,15 @@ public class SlackSendMessage {
     String channelId;
 
     /**
-     * 주문 생성 및 상태 변경 시 호출되는 메서드
-     * - 예외 처리 및 sendMessage()를 감싼다.
+     * 주문 생성 및 상태 변경 시 호출되는 메서드 - 예외 처리 및 sendMessage()를 감싼다.
+     *
      * @param storeName
      * @param orderState
      */
     public void callSlackSendMessageApi(String storeName, OrderState orderState) {
         String content = null;
-        try{
-            switch (orderState){
+        try {
+            switch (orderState) {
                 case PENDING -> content = "[" + storeName + "] " + "가게에 주문이 전송되었습니다.";
                 case ACCEPTED -> content = "[" + storeName + "] " + "가게에서 주문을 수락했습니다.";
                 case CANCELED -> content = "[" + storeName + "] " + "가게의 요청으로 주문이 취소되었습니다.";
@@ -56,10 +56,11 @@ public class SlackSendMessage {
 
     /**
      * 실제 Slack API 호출한다.
+     *
      * @param content
      * @throws IOException
      */
-    public void sendMessage(String content) throws IOException{
+    public void sendMessage(String content) throws IOException {
 
         // Http header 설정
         HttpHeaders headers = new HttpHeaders();
@@ -86,15 +87,13 @@ public class SlackSendMessage {
             );
 
             // 응답 처리
-            if(response.getStatusCode() == HttpStatus.OK) {
-                if(response.getBody() != null && response.getBody().contains("\"ok\":true")) {
+            if (response.getStatusCode() == HttpStatus.OK) {
+                if (response.getBody() != null && response.getBody().contains("\"ok\":true")) {
                     log.info("Slack 메시지 전송 성공 : {}", content);
-                }
-                else {
+                } else {
                     log.error("Slack 메시지 전송 실패 : {}", response.getBody());
                 }
-            }
-            else {
+            } else {
                 log.error(
                     "Slack API 오류: Status Code = {}, Response = {} ",
                     response.getStatusCode(), response.getBody()

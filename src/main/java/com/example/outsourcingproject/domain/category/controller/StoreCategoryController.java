@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/store-categories")
 public class StoreCategoryController {
+
     private final StoreCategoryService storeCategoryService;
 
     public StoreCategoryController(StoreCategoryService storeCategoryService) {
@@ -22,7 +23,8 @@ public class StoreCategoryController {
     @PostMapping
     public ResponseEntity<CreateStoreCategoryResponseDto> createStoreCategory(
         @RequestBody CreateStoreCategoryRequestDto requestDto) {
-        CreateStoreCategoryResponseDto responseDto = storeCategoryService.createCategory(requestDto);
+        CreateStoreCategoryResponseDto responseDto = storeCategoryService.createCategory(
+            requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 }

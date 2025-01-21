@@ -8,6 +8,7 @@ import lombok.Getter;
 // JSON 출력 순서 지정
 @JsonPropertyOrder({"id", "contents", "rating", "createdAt"})
 public class CreateReviewResponseDto {
+
     private final Long id;
     private final String contents;
     private final Integer rating;
