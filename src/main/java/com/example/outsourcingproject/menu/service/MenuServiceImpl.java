@@ -57,10 +57,7 @@ public class MenuServiceImpl implements MenuService {
             requestDto.getMenuName(),
             requestDto.getMenuPrice(),
             requestDto.getMenuInfo(),
-            foundStore,
-            menuCategoryList.get(0),
-            menuCategoryList.get(1),
-            menuCategoryList.get(2)
+            foundStore
         );
 
         Menu savedMenu = menuRepository.save(menuToSave);

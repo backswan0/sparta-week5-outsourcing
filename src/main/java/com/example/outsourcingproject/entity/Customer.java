@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import org.hibernate.annotations.Comment;
 
-// 깃 커밋
 @Getter
 @Entity
 @Table(name = "customers")

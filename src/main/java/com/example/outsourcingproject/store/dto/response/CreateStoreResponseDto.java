@@ -15,7 +15,7 @@ public class CreateStoreResponseDto {
     private final Integer minimumPurchase;
     private final LocalTime opensAt;
     private final LocalTime closesAt;
-    private final List<CategoryResponseDto> categories;
+    private final List<StoreCategoryResponseDto> categories;
 
     public CreateStoreResponseDto(Store store) {
         this.id = store.getId();
@@ -26,9 +26,9 @@ public class CreateStoreResponseDto {
         this.opensAt = store.getOpensAt();
         this.closesAt = store.getClosesAt();
 
-        this.categories = store.getStoreCategoryList()
+        this.categories = store.getMappingStoreCategoryList()
             .stream()
-            .map(storeCategory -> new CategoryResponseDto(storeCategory.getCategory()))
+            .map(storeCategory -> new StoreCategoryResponseDto(storeCategory.getStoreCategory()))
             .toList();
     }
 }

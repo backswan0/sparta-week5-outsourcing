@@ -72,9 +72,9 @@ public class Store extends BaseEntity {
     )
     private LocalTime closesAt;
 
-    @Comment("가게 카테고리")
+    @Comment("중간 테이블")
     @OneToMany(mappedBy = "store")
-    private List<StoreCategory> storeCategoryList
+    private List<MappingStoreCategory> mappingStoreCategoryList
         = new ArrayList<>();
 
     protected Store() {
@@ -99,9 +99,9 @@ public class Store extends BaseEntity {
     }
 
     public void addStoreCategoryList(
-        List<StoreCategory> storeCategoryList
+        List<MappingStoreCategory> mappingStoreCategoryList
     ) {
-        this.storeCategoryList.addAll(storeCategoryList);
+        this.mappingStoreCategoryList.addAll(mappingStoreCategoryList);
     }
 
     public void update(

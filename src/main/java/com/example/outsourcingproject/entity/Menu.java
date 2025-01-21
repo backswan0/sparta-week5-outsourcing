@@ -8,7 +8,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import org.hibernate.annotations.Comment;
 
@@ -53,20 +56,10 @@ public class Menu extends BaseEntity {
     )
     private Store store;
 
-    @Comment("첫 번째 메뉴 카테고리 식별자")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_category_one_id")
-    private MenuCategory menuCategoryOne;
-
-    @Comment("두 번째 메뉴 카테고리 식별자")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_category_two_id")
-    private MenuCategory menuCategoryTwo;
-
-    @Comment("세 번째 메뉴 카테고리 식별자")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_category_three_id")
-    private MenuCategory menuCategoryThree;
+    @Comment("중간 테이블")
+    @OneToMany(mappedBy = "menu")
+    private List<MappingMenuCategory> mappingMenuCategoryList
+        = new ArrayList<>();
 
     protected Menu() {
     }
@@ -75,18 +68,18 @@ public class Menu extends BaseEntity {
         String menuName,
         Integer menuPrice,
         String menuInfo,
-        Store store,
-        MenuCategory menuCategoryOne,
-        MenuCategory menuCategoryTwo,
-        MenuCategory menuCategoryThree
+        Store store
     ) {
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.menuInfo = menuInfo;
         this.store = store;
-        this.menuCategoryOne = menuCategoryOne;
-        this.menuCategoryTwo = menuCategoryTwo;
-        this.menuCategoryThree = menuCategoryThree;
+    }
+
+    public void addMenuCategoryList(
+        List<MappingMenuCategory> mappingMenuCategoryList
+    ) {
+        this.mappingMenuCategoryList.addAll(mappingMenuCategoryList);
     }
 
     public void update(

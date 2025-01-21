@@ -3,7 +3,6 @@ package com.example.outsourcingproject.domain.order.entity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.example.outsourcingproject.entity.Category;
 import com.example.outsourcingproject.entity.Order;
 import com.example.outsourcingproject.entity.Store;
 import com.example.outsourcingproject.exception.ErrorCode;
