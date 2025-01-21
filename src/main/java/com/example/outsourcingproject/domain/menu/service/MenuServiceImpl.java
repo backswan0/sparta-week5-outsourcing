@@ -4,6 +4,7 @@ import com.example.outsourcingproject.common.entity.MappingMenuCategory;
 import com.example.outsourcingproject.common.entity.Menu;
 import com.example.outsourcingproject.common.entity.MenuCategory;
 import com.example.outsourcingproject.common.entity.Store;
+import com.example.outsourcingproject.common.exception.badrequest.CategoryCountExcessException;
 import com.example.outsourcingproject.common.exception.badrequest.StoreMismatchException;
 import com.example.outsourcingproject.common.exception.notfound.MenuNotFoundException;
 import com.example.outsourcingproject.common.exception.notfound.StoreNotFoundException;
@@ -55,6 +56,10 @@ public class MenuServiceImpl implements MenuService {
             requestDto.getCategoryList(),
             Sort.unsorted()
         );
+
+        if (menuCategoryList.size() > 3) {
+            throw new CategoryCountExcessException();
+        }
 
         List<MappingMenuCategory> mappingMenuCategoryList = new ArrayList<>();
 
