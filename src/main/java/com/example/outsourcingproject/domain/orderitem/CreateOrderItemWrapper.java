@@ -1,4 +1,4 @@
-package com.example.outsourcingproject.common;
+package com.example.outsourcingproject.domain.orderitem;
 
 import com.example.outsourcingproject.common.entity.Order;
 import com.example.outsourcingproject.domain.order.OrderState;

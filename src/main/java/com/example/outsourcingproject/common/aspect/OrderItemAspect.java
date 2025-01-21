@@ -1,6 +1,6 @@
 package com.example.outsourcingproject.common.aspect;
 
-import com.example.outsourcingproject.common.CreateOrderItemWrapper;
+import com.example.outsourcingproject.domain.orderitem.CreateOrderItemWrapper;
 import com.example.outsourcingproject.domain.order.OrderState;
 import java.time.LocalDateTime;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.example.outsourcingproject.domain.orderitem.service;
 
-import com.example.outsourcingproject.common.CreateOrderItemWrapper;
-import com.example.outsourcingproject.common.ReadOrderItemWrapper;
+import com.example.outsourcingproject.domain.orderitem.CreateOrderItemWrapper;
+import com.example.outsourcingproject.domain.orderitem.ReadOrderItemWrapper;
 import com.example.outsourcingproject.common.entity.Menu;
 import com.example.outsourcingproject.common.entity.Order;
 import com.example.outsourcingproject.common.entity.OrderItem;

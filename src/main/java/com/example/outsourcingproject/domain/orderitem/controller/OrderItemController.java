@@ -1,8 +1,8 @@
 package com.example.outsourcingproject.domain.orderitem.controller;
 
 import com.example.outsourcingproject.common.aspect.AuthCheck;
-import com.example.outsourcingproject.common.CreateOrderItemWrapper;
-import com.example.outsourcingproject.common.ReadOrderItemWrapper;
+import com.example.outsourcingproject.domain.orderitem.CreateOrderItemWrapper;
+import com.example.outsourcingproject.domain.orderitem.ReadOrderItemWrapper;
 import com.example.outsourcingproject.domain.orderitem.dto.request.CreateOrderItemRequestDto;
 import com.example.outsourcingproject.domain.orderitem.service.OrderItemServiceImpl;
 import java.util.List;
