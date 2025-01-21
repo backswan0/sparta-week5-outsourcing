@@ -1,6 +1,6 @@
 package com.example.outsourcingproject.auth.repository;
 
-import com.example.outsourcingproject.entity.Customer;
+import com.example.outsourcingproject.common.entity.Customer;
 import io.lettuce.core.dynamic.annotation.Param;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;

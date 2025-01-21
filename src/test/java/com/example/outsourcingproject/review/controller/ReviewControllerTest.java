@@ -1,8 +1,8 @@
 //package com.example.outsourcingproject.review.controller;
 //
-//import com.example.outsourcingproject.review.dto.request.CreateReviewRequestDto;
-//import com.example.outsourcingproject.review.dto.response.CreateReviewResponseDto;
-//import com.example.outsourcingproject.review.service.ReviewServiceImpl;
+//import com.example.outsourcingproject.domain.request.dto.review.CreateReviewRequestDto;
+//import com.example.outsourcingproject.domain.response.dto.review.CreateReviewResponseDto;
+//import com.example.outsourcingproject.domain.service.review.ReviewServiceImpl;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import org.junit.jupiter.api.Test;
 //import org.mockito.Mockito;

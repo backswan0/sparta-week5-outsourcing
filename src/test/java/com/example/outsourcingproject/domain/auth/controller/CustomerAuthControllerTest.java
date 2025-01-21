@@ -10,7 +10,7 @@ import com.example.outsourcingproject.auth.controller.CustomerAuthController;
 import com.example.outsourcingproject.auth.dto.request.SignUpCustomerRequestDto;
 import com.example.outsourcingproject.auth.dto.response.SignUpCustomerResponseDto;
 import com.example.outsourcingproject.auth.service.CustomerAuthServiceImpl;
-import com.example.outsourcingproject.entity.Customer;
+import com.example.outsourcingproject.common.entity.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

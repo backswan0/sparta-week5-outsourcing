@@ -1,6 +1,6 @@
 package com.example.outsourcingproject.auth.filter;
 
-import com.example.outsourcingproject.utils.JwtUtil;
+import com.example.outsourcingproject.common.utils.JwtUtil;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

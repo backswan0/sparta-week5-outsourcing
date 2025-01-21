@@ -1,8 +1,7 @@
 package com.example.outsourcingproject.domain.category.controller;
-import com.example.outsourcingproject.category.controller.StoreCategoryController;
-import com.example.outsourcingproject.category.dto.request.CreateStoreCategoryRequestDto;
-import com.example.outsourcingproject.category.dto.response.CreateStoreCategoryResponseDto;
-import com.example.outsourcingproject.category.service.StoreCategoryService;
+import com.example.outsourcingproject.domain.category.dto.request.CreateStoreCategoryRequestDto;
+import com.example.outsourcingproject.domain.category.dto.response.CreateStoreCategoryResponseDto;
+import com.example.outsourcingproject.domain.category.service.StoreCategoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

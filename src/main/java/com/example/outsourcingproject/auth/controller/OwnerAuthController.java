@@ -1,6 +1,6 @@
 package com.example.outsourcingproject.auth.controller;
 
-import com.example.outsourcingproject.aspect.AuthCheck;
+import com.example.outsourcingproject.common.aspect.AuthCheck;
 import com.example.outsourcingproject.auth.dto.request.SignInOwnerRequestDto;
 import com.example.outsourcingproject.auth.dto.request.SignUpOwnerRequestDto;
 import com.example.outsourcingproject.auth.dto.response.SignInOwnerResponseDto;
