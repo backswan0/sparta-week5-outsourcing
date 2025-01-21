@@ -1,7 +1,7 @@
 package com.example.outsourcingproject.domain.store.service;
 
 import com.example.outsourcingproject.auth.repository.OwnerAuthRepository;
-import com.example.outsourcingproject.domain.category.repository.CategoryRepository;
+import com.example.outsourcingproject.domain.category.repository.StoreCategoryRepository;
 import com.example.outsourcingproject.common.entity.StoreCategory;
 import com.example.outsourcingproject.common.entity.Menu;
 import com.example.outsourcingproject.common.entity.Owner;
@@ -22,7 +22,7 @@ import com.example.outsourcingproject.domain.store.dto.response.StoreCategorySea
 import com.example.outsourcingproject.domain.store.dto.response.StoreNameSearchResponseDto;
 import com.example.outsourcingproject.domain.store.dto.response.StoreResponseDto;
 import com.example.outsourcingproject.domain.store.dto.response.UpdateStoreResponseDto;
-import com.example.outsourcingproject.domain.store.repository.MappingStoreCategoryRepository;
+import com.example.outsourcingproject.mapping.MappingStoreCategoryRepository;
 import com.example.outsourcingproject.domain.store.repository.StoreRepository;
 import com.example.outsourcingproject.common.utils.JwtUtil;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class StoreServiceImpl implements StoreService {
     private final OwnerAuthRepository ownerAuthRepository;
     private final JwtUtil jwtUtil;
     private final MenuRepository menuRepository;
-    private final CategoryRepository categoryRepository;
+    private final StoreCategoryRepository storeCategoryRepository;
     private final MappingStoreCategoryRepository mappingStoreCategoryRepository;
 
     @Transactional
@@ -81,7 +81,7 @@ public class StoreServiceImpl implements StoreService {
 
         List<StoreCategory> storeCategoryList = new ArrayList<>();
 
-        storeCategoryList = categoryRepository.findAllByNameIn(
+        storeCategoryList = storeCategoryRepository.findAllByNameIn(
             requestDto.getCategoryList(),
             Sort.unsorted()
         );

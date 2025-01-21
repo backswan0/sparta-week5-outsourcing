@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoryRepository extends JpaRepository<StoreCategory, Long> {
+public interface StoreCategoryRepository extends JpaRepository<StoreCategory, Long> {
 
     List<StoreCategory> findAllByNameIn(
         Collection<String> names,
