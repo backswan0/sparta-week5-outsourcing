@@ -3,7 +3,7 @@ package com.example.outsourcingproject.domain.order.entity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.example.outsourcingproject.entity.StoreCategory;
+import com.example.outsourcingproject.entity.Category;
 import com.example.outsourcingproject.entity.Order;
 import com.example.outsourcingproject.entity.Store;
 import com.example.outsourcingproject.exception.ErrorCode;
@@ -34,9 +34,9 @@ public class OrderTest {
                 "전화번호",
                 10000,
                 LocalTime.of(10, 0),
-                LocalTime.of(23, 0),
-                new StoreCategory("메뉴 카테고리 1"),
-                new StoreCategory("메뉴 카테고리 2")
+                LocalTime.of(23, 0)
+//                new Category("메뉴 카테고리 1"),
+//                new Category("메뉴 카테고리 2")
             )
         );
 
@@ -59,9 +59,9 @@ public class OrderTest {
                 "전화번호",
                 10000,
                 LocalTime.of(10, 0),
-                LocalTime.of(23, 0),
-                new StoreCategory("메뉴 카테고리 1"),
-                new StoreCategory("메뉴 카테고리 2")
+                LocalTime.of(23, 0)
+//                new Category("메뉴 카테고리 1"),
+//                new Category("메뉴 카테고리 2")
             )
         );
 
@@ -87,9 +87,9 @@ public class OrderTest {
                 "전화번호",
                 10000,
                 LocalTime.of(10, 0),
-                LocalTime.of(23, 0),
-                new StoreCategory("메뉴 카테고리 1"),
-                new StoreCategory("메뉴 카테고리 2")
+                LocalTime.of(23, 0)
+//                new Category("메뉴 카테고리 1"),
+//                new Category("메뉴 카테고리 2")
             )
         );
 
