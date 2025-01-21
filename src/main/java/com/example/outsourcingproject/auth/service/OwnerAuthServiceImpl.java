@@ -1,16 +1,16 @@
 package com.example.outsourcingproject.auth.service;
 
-import com.example.outsourcingproject.aspect.AuthCheck;
+import com.example.outsourcingproject.common.aspect.AuthCheck;
 import com.example.outsourcingproject.auth.dto.request.SignInOwnerRequestDto;
 import com.example.outsourcingproject.auth.dto.request.SignUpOwnerRequestDto;
 import com.example.outsourcingproject.auth.dto.response.SignInOwnerResponseDto;
 import com.example.outsourcingproject.auth.dto.response.SignUpOwnerResponseDto;
 import com.example.outsourcingproject.auth.repository.OwnerAuthRepository;
-import com.example.outsourcingproject.entity.Owner;
-import com.example.outsourcingproject.exception.CustomException;
-import com.example.outsourcingproject.exception.ErrorCode;
-import com.example.outsourcingproject.utils.JwtUtil;
-import com.example.outsourcingproject.utils.PasswordEncoder;
+import com.example.outsourcingproject.common.entity.Owner;
+import com.example.outsourcingproject.common.exception.CustomException;
+import com.example.outsourcingproject.common.exception.ErrorCode;
+import com.example.outsourcingproject.common.utils.JwtUtil;
+import com.example.outsourcingproject.common.utils.PasswordEncoder;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

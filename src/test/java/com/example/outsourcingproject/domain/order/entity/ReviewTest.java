@@ -6,10 +6,10 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.outsourcingproject.entity.Customer;
-import com.example.outsourcingproject.entity.Order;
-import com.example.outsourcingproject.entity.Review;
-import com.example.outsourcingproject.entity.Store;
+import com.example.outsourcingproject.common.entity.Customer;
+import com.example.outsourcingproject.common.entity.Order;
+import com.example.outsourcingproject.common.entity.Review;
+import com.example.outsourcingproject.common.entity.Store;
 
 public class ReviewTest {
 

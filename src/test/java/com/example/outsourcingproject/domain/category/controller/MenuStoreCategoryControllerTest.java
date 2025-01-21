@@ -1,9 +1,8 @@
 package com.example.outsourcingproject.domain.category.controller;
 
-import com.example.outsourcingproject.category.controller.MenuCategoryController;
-import com.example.outsourcingproject.category.dto.request.CreateMenuCategoryRequestDto;
-import com.example.outsourcingproject.category.dto.response.CreateMenuCategoryResponseDto;
-import com.example.outsourcingproject.category.service.MenuCategoryService;
+import com.example.outsourcingproject.domain.category.dto.request.CreateMenuCategoryRequestDto;
+import com.example.outsourcingproject.domain.category.dto.response.CreateMenuCategoryResponseDto;
+import com.example.outsourcingproject.domain.category.service.MenuCategoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package com.example.outsourcingproject.common;
 
 
-import com.example.outsourcingproject.order.OrderState;
-import com.example.outsourcingproject.orderitem.dto.response.OrderItemResponseDto;
+import com.example.outsourcingproject.domain.order.OrderState;
+import com.example.outsourcingproject.domain.orderitem.dto.response.OrderItemResponseDto;
 import java.util.List;
 import lombok.Getter;
 

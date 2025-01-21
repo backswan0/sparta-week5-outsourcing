@@ -3,12 +3,12 @@ package com.example.outsourcingproject.domain.order.entity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.example.outsourcingproject.entity.Order;
-import com.example.outsourcingproject.entity.Store;
-import com.example.outsourcingproject.exception.ErrorCode;
-import com.example.outsourcingproject.exception.invalidtransition.InvalidTransitionFromAcceptedException;
-import com.example.outsourcingproject.exception.invalidtransition.InvalidTransitionFromPendingException;
-import com.example.outsourcingproject.order.OrderState;
+import com.example.outsourcingproject.common.entity.Order;
+import com.example.outsourcingproject.common.entity.Store;
+import com.example.outsourcingproject.common.exception.ErrorCode;
+import com.example.outsourcingproject.common.exception.invalidtransition.InvalidTransitionFromAcceptedException;
+import com.example.outsourcingproject.common.exception.invalidtransition.InvalidTransitionFromPendingException;
+import com.example.outsourcingproject.domain.order.OrderState;
 import java.time.LocalTime;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

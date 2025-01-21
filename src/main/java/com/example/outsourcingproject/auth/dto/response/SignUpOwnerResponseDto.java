@@ -1,6 +1,6 @@
 package com.example.outsourcingproject.auth.dto.response;
 
-import com.example.outsourcingproject.entity.Owner;
+import com.example.outsourcingproject.common.entity.Owner;
 import lombok.Getter;
 
 @Getter
