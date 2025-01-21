@@ -9,17 +9,17 @@ public class CreateMenuRequestDto {
     private final String menuName;
     private final Integer menuPrice;
     private final String menuInfo;
-    private final List<String> menuCategoryNameList;
+    private final List<String> categoryList;
 
     public CreateMenuRequestDto(
         String menuName,
         Integer menuPrice,
         String menuInfo,
-        List<String> menuCategoryNameList
+        List<String> categoryList
     ) {
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.menuInfo = menuInfo;
-        this.menuCategoryNameList = menuCategoryNameList;
+        this.categoryList = categoryList;
     }
 }

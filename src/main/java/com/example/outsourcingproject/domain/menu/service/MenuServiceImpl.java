@@ -1,19 +1,20 @@
 package com.example.outsourcingproject.domain.menu.service;
 
-import com.example.outsourcingproject.domain.category.repository.MenuCategoryRepository;
+import com.example.outsourcingproject.common.entity.MappingMenuCategory;
 import com.example.outsourcingproject.common.entity.Menu;
 import com.example.outsourcingproject.common.entity.MenuCategory;
 import com.example.outsourcingproject.common.entity.Store;
-import com.example.outsourcingproject.common.exception.badrequest.CategoryCountExcessException;
 import com.example.outsourcingproject.common.exception.badrequest.StoreMismatchException;
 import com.example.outsourcingproject.common.exception.notfound.MenuNotFoundException;
 import com.example.outsourcingproject.common.exception.notfound.StoreNotFoundException;
+import com.example.outsourcingproject.domain.category.repository.MenuCategoryRepository;
 import com.example.outsourcingproject.domain.menu.dto.request.CreateMenuRequestDto;
 import com.example.outsourcingproject.domain.menu.dto.request.UpdateMenuRequestDto;
 import com.example.outsourcingproject.domain.menu.dto.response.CreateMenuResponseDto;
 import com.example.outsourcingproject.domain.menu.dto.response.UpdateMenuResponseDto;
 import com.example.outsourcingproject.domain.menu.repository.MenuRepository;
 import com.example.outsourcingproject.domain.store.repository.StoreRepository;
+import com.example.outsourcingproject.mapping.MappingMenuCategoryRepository;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
     private final StoreRepository storeRepository;
     private final MenuCategoryRepository menuCategoryRepository;
+    private final MappingMenuCategoryRepository mappingMenuCategoryRepository;
 
     @Transactional
     @Override
@@ -38,21 +40,6 @@ public class MenuServiceImpl implements MenuService {
         Store foundStore = storeRepository.findById(storeId)
             .orElseThrow(StoreNotFoundException::new);
 
-        List<String> menuCategoryNameList = new ArrayList<>();
-
-        menuCategoryNameList = requestDto.getMenuCategoryNameList();
-
-        List<MenuCategory> menuCategoryList = new ArrayList<>();
-
-        menuCategoryList = menuCategoryRepository.findAllByNameIn(
-            menuCategoryNameList,
-            Sort.unsorted()
-        );
-
-        if (menuCategoryList.size() != 3) {
-            throw new CategoryCountExcessException();
-        }
-
         Menu menuToSave = new Menu(
             requestDto.getMenuName(),
             requestDto.getMenuPrice(),
@@ -61,6 +48,27 @@ public class MenuServiceImpl implements MenuService {
         );
 
         Menu savedMenu = menuRepository.save(menuToSave);
+
+        List<MenuCategory> menuCategoryList = new ArrayList<>();
+
+        menuCategoryList = menuCategoryRepository.findAllByNameIn(
+            requestDto.getCategoryList(),
+            Sort.unsorted()
+        );
+
+        List<MappingMenuCategory> mappingMenuCategoryList = new ArrayList<>();
+
+        mappingMenuCategoryList = menuCategoryList.stream()
+            .map(category -> new MappingMenuCategory(
+                    category,
+                    savedMenu
+                )
+            )
+            .toList();
+
+        mappingMenuCategoryRepository.saveAll(mappingMenuCategoryList);
+
+        savedMenu.addMenuCategoryList(mappingMenuCategoryList);
 
         return new CreateMenuResponseDto(savedMenu);
     }
