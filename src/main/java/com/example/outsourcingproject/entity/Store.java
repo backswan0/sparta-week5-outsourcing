@@ -3,14 +3,14 @@ package com.example.outsourcingproject.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -72,15 +72,10 @@ public class Store extends BaseEntity {
     )
     private LocalTime closesAt;
 
-    @Comment("첫 번째 가게 카테고리 식별자")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_category_one_id")
-    private StoreCategory storeCategoryOne;
-
-    @Comment("두 번째 가게 카테고리 식별자")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_category_two_id")
-    private StoreCategory storeCategoryTwo;
+    @Comment("가게 카테고리")
+    @OneToMany(mappedBy = "store")
+    private List<StoreCategory> storeCategoryList
+        = new ArrayList<>();
 
     protected Store() {
     }
@@ -92,9 +87,7 @@ public class Store extends BaseEntity {
         String storeTelephone,
         Integer minimumPurchase,
         LocalTime opensAt,
-        LocalTime closesAt,
-        StoreCategory storeCategoryOne,
-        StoreCategory storeCategoryTwo
+        LocalTime closesAt
     ) {
         this.ownerId = ownerId;
         this.storeName = storeName;
@@ -103,8 +96,12 @@ public class Store extends BaseEntity {
         this.minimumPurchase = minimumPurchase;
         this.opensAt = opensAt;
         this.closesAt = closesAt;
-        this.storeCategoryOne = storeCategoryOne;
-        this.storeCategoryTwo = storeCategoryTwo;
+    }
+
+    public void addStoreCategoryList(
+        List<StoreCategory> storeCategoryList
+    ) {
+        this.storeCategoryList.addAll(storeCategoryList);
     }
 
     public void update(

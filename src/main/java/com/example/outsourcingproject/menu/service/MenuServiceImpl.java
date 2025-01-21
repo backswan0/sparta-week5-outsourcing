@@ -4,7 +4,7 @@ import com.example.outsourcingproject.category.repository.MenuCategoryRepository
 import com.example.outsourcingproject.entity.Menu;
 import com.example.outsourcingproject.entity.MenuCategory;
 import com.example.outsourcingproject.entity.Store;
-import com.example.outsourcingproject.exception.badrequest.CategoryInvalidCountException;
+import com.example.outsourcingproject.exception.badrequest.CategoryCountExcessException;
 import com.example.outsourcingproject.exception.badrequest.StoreMismatchException;
 import com.example.outsourcingproject.exception.notfound.MenuNotFoundException;
 import com.example.outsourcingproject.exception.notfound.StoreNotFoundException;
@@ -50,7 +50,7 @@ public class MenuServiceImpl implements MenuService {
         );
 
         if (menuCategoryList.size() != 3) {
-            throw new CategoryInvalidCountException();
+            throw new CategoryCountExcessException();
         }
 
         Menu menuToSave = new Menu(

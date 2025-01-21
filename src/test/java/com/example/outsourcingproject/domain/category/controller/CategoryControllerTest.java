@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @ExtendWith(MockitoExtension.class)
-public class StoreCategoryControllerTest {
+public class CategoryControllerTest {
     private static final String BASE_URL = "/store-categories";
     private MockMvc mockMvc;
     @Mock

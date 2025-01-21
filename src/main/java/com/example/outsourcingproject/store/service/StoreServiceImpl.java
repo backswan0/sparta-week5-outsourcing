@@ -1,14 +1,15 @@
 package com.example.outsourcingproject.store.service;
 
 import com.example.outsourcingproject.auth.repository.OwnerAuthRepository;
-import com.example.outsourcingproject.category.repository.StoreCategoryRepository;
+import com.example.outsourcingproject.category.repository.CategoryRepository;
+import com.example.outsourcingproject.entity.Category;
 import com.example.outsourcingproject.entity.Menu;
 import com.example.outsourcingproject.entity.Owner;
 import com.example.outsourcingproject.entity.Store;
 import com.example.outsourcingproject.entity.StoreCategory;
 import com.example.outsourcingproject.exception.CustomException;
 import com.example.outsourcingproject.exception.ErrorCode;
-import com.example.outsourcingproject.exception.badrequest.CategoryInvalidCountException;
+import com.example.outsourcingproject.exception.badrequest.CategoryCountExcessException;
 import com.example.outsourcingproject.exception.badrequest.StoreInvalidCountExcessException;
 import com.example.outsourcingproject.exception.notfound.OwnerNotFoundException;
 import com.example.outsourcingproject.exception.notfound.StoreNotFoundException;
@@ -21,6 +22,7 @@ import com.example.outsourcingproject.store.dto.response.StoreCategorySearchResp
 import com.example.outsourcingproject.store.dto.response.StoreNameSearchResponseDto;
 import com.example.outsourcingproject.store.dto.response.StoreResponseDto;
 import com.example.outsourcingproject.store.dto.response.UpdateStoreResponseDto;
+import com.example.outsourcingproject.store.repository.StoreCategoryRepository;
 import com.example.outsourcingproject.store.repository.StoreRepository;
 import com.example.outsourcingproject.utils.JwtUtil;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class StoreServiceImpl implements StoreService {
     private final OwnerAuthRepository ownerAuthRepository;
     private final JwtUtil jwtUtil;
     private final MenuRepository menuRepository;
+    private final CategoryRepository categoryRepository;
     private final StoreCategoryRepository storeCategoryRepository;
 
     @Transactional
@@ -64,21 +67,6 @@ public class StoreServiceImpl implements StoreService {
             throw new StoreInvalidCountExcessException();
         }
 
-        List<String> storeCategoryNameList = new ArrayList<>();
-
-        storeCategoryNameList = requestDto.getStoreCategoryNameList();
-
-        if (storeCategoryNameList.size() != 2) {
-            throw new CategoryInvalidCountException();
-        }
-
-        List<StoreCategory> storeCategoryList = new ArrayList<>();
-
-        storeCategoryList = storeCategoryRepository.findAllByNameIn(
-            storeCategoryNameList,
-            Sort.unsorted()
-        );
-
         Store storeToSave = new Store(
             foundOwner.getId(),
             requestDto.getStoreName(),
@@ -86,12 +74,35 @@ public class StoreServiceImpl implements StoreService {
             requestDto.getStoreTelephone(),
             requestDto.getMinimumPurchase(),
             requestDto.getOpensAt(),
-            requestDto.getClosesAt(),
-            storeCategoryList.get(0),
-            storeCategoryList.get(1)
+            requestDto.getClosesAt()
         );
 
         Store savedStore = storeRepository.save(storeToSave);
+
+        List<Category> categoryList = new ArrayList<>();
+
+        categoryList = categoryRepository.findAllByNameIn(
+            requestDto.getCategoryList(),
+            Sort.unsorted()
+        );
+
+        if (categoryList.size() > 3) {
+            throw new CategoryCountExcessException();
+        }
+
+        List<StoreCategory> storeCategoryList = new ArrayList<>();
+
+        storeCategoryList = categoryList.stream()
+            .map(category -> new StoreCategory(
+                    category,
+                    savedStore
+                )
+            )
+            .toList();
+
+        storeCategoryRepository.saveAll(storeCategoryList);
+
+        savedStore.addStoreCategoryList(storeCategoryList);
 
         return new CreateStoreResponseDto(savedStore);
     }
@@ -124,11 +135,11 @@ public class StoreServiceImpl implements StoreService {
     ) {
         List<Store> storeList = new ArrayList<>();
 
-        storeList = storeRepository.findByStoreCategoryOne_NameOrStoreCategoryTwo_NameAndIsDeleted(
-            storeCategoryName,
-            storeCategoryName,
-            0
-        );
+//        storeList = storeRepository.findByStoreCategoryOne_NameOrStoreCategoryTwo_NameAndIsDeleted(
+//            storeCategoryName,
+//            storeCategoryName,
+//            0
+//        );
 
         List<Menu> menuList = new ArrayList<>();
 
