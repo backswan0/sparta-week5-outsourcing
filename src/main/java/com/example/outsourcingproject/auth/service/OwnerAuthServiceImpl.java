@@ -1,11 +1,11 @@
 package com.example.outsourcingproject.auth.service;
 
-import com.example.outsourcingproject.common.aspect.AuthCheck;
 import com.example.outsourcingproject.auth.dto.request.SignInOwnerRequestDto;
 import com.example.outsourcingproject.auth.dto.request.SignUpOwnerRequestDto;
 import com.example.outsourcingproject.auth.dto.response.SignInOwnerResponseDto;
 import com.example.outsourcingproject.auth.dto.response.SignUpOwnerResponseDto;
 import com.example.outsourcingproject.auth.repository.OwnerAuthRepository;
+import com.example.outsourcingproject.common.aspect.AuthCheck;
 import com.example.outsourcingproject.common.entity.Owner;
 import com.example.outsourcingproject.common.exception.CustomException;
 import com.example.outsourcingproject.common.exception.ErrorCode;

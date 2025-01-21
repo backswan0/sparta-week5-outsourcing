@@ -1,9 +1,9 @@
 package com.example.outsourcingproject.domain.category.service;
 
+import com.example.outsourcingproject.common.entity.MenuCategory;
 import com.example.outsourcingproject.domain.category.dto.request.CreateMenuCategoryRequestDto;
 import com.example.outsourcingproject.domain.category.dto.response.CreateMenuCategoryResponseDto;
 import com.example.outsourcingproject.domain.category.repository.MenuCategoryRepository;
-import com.example.outsourcingproject.common.entity.MenuCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,9 +1,9 @@
 package com.example.outsourcingproject.domain.category.service;
 
+import com.example.outsourcingproject.common.entity.StoreCategory;
 import com.example.outsourcingproject.domain.category.dto.request.CreateStoreCategoryRequestDto;
 import com.example.outsourcingproject.domain.category.dto.response.CreateStoreCategoryResponseDto;
 import com.example.outsourcingproject.domain.category.repository.StoreCategoryRepository;
-import com.example.outsourcingproject.common.entity.StoreCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
