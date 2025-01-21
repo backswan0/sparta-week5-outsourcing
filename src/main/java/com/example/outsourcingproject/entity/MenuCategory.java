@@ -23,9 +23,9 @@ public class MenuCategory {
     @Column(columnDefinition = "BIGINT")
     private Long id;
 
-    @Comment("메뉴용 카테고리 이름")
+    @Comment("이름")
     @Column(
-        name = "menu_category_name",
+        name = "name",
         nullable = false
     )
     private String name;

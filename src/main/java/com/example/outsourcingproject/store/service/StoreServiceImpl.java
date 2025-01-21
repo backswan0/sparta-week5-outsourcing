@@ -2,11 +2,11 @@ package com.example.outsourcingproject.store.service;
 
 import com.example.outsourcingproject.auth.repository.OwnerAuthRepository;
 import com.example.outsourcingproject.category.repository.CategoryRepository;
-import com.example.outsourcingproject.entity.Category;
+import com.example.outsourcingproject.entity.StoreCategory;
 import com.example.outsourcingproject.entity.Menu;
 import com.example.outsourcingproject.entity.Owner;
 import com.example.outsourcingproject.entity.Store;
-import com.example.outsourcingproject.entity.StoreCategory;
+import com.example.outsourcingproject.entity.MappingStoreCategory;
 import com.example.outsourcingproject.exception.CustomException;
 import com.example.outsourcingproject.exception.ErrorCode;
 import com.example.outsourcingproject.exception.badrequest.CategoryCountExcessException;
@@ -22,7 +22,7 @@ import com.example.outsourcingproject.store.dto.response.StoreCategorySearchResp
 import com.example.outsourcingproject.store.dto.response.StoreNameSearchResponseDto;
 import com.example.outsourcingproject.store.dto.response.StoreResponseDto;
 import com.example.outsourcingproject.store.dto.response.UpdateStoreResponseDto;
-import com.example.outsourcingproject.store.repository.StoreCategoryRepository;
+import com.example.outsourcingproject.store.repository.MappingStoreCategoryRepository;
 import com.example.outsourcingproject.store.repository.StoreRepository;
 import com.example.outsourcingproject.utils.JwtUtil;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class StoreServiceImpl implements StoreService {
     private final JwtUtil jwtUtil;
     private final MenuRepository menuRepository;
     private final CategoryRepository categoryRepository;
-    private final StoreCategoryRepository storeCategoryRepository;
+    private final MappingStoreCategoryRepository mappingStoreCategoryRepository;
 
     @Transactional
     @Override
@@ -79,30 +79,30 @@ public class StoreServiceImpl implements StoreService {
 
         Store savedStore = storeRepository.save(storeToSave);
 
-        List<Category> categoryList = new ArrayList<>();
+        List<StoreCategory> storeCategoryList = new ArrayList<>();
 
-        categoryList = categoryRepository.findAllByNameIn(
+        storeCategoryList = categoryRepository.findAllByNameIn(
             requestDto.getCategoryList(),
             Sort.unsorted()
         );
 
-        if (categoryList.size() > 3) {
+        if (storeCategoryList.size() > 3) {
             throw new CategoryCountExcessException();
         }
 
-        List<StoreCategory> storeCategoryList = new ArrayList<>();
+        List<MappingStoreCategory> mappingStoreCategoryList = new ArrayList<>();
 
-        storeCategoryList = categoryList.stream()
-            .map(category -> new StoreCategory(
+        mappingStoreCategoryList = storeCategoryList.stream()
+            .map(category -> new MappingStoreCategory(
                     category,
                     savedStore
                 )
             )
             .toList();
 
-        storeCategoryRepository.saveAll(storeCategoryList);
+        mappingStoreCategoryRepository.saveAll(mappingStoreCategoryList);
 
-        savedStore.addStoreCategoryList(storeCategoryList);
+        savedStore.addStoreCategoryList(mappingStoreCategoryList);
 
         return new CreateStoreResponseDto(savedStore);
     }
@@ -143,12 +143,12 @@ public class StoreServiceImpl implements StoreService {
 
         List<Menu> menuList = new ArrayList<>();
 
-        menuList = menuRepository.findByMenuCategoryOne_NameOrMenuCategoryTwo_NameOrMenuCategoryThree_NameAndIsDeleted(
-            storeCategoryName,
-            storeCategoryName,
-            storeCategoryName,
-            0
-        );
+//        menuList = menuRepository.findByMenuCategoryOne_NameOrMenuCategoryTwo_NameOrMenuCategoryThree_NameAndIsDeleted(
+//            storeCategoryName,
+//            storeCategoryName,
+//            storeCategoryName,
+//            0
+//        );
 
         Set<Long> storeIdSet = new HashSet<>();
 
