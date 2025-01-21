@@ -1,8 +1,8 @@
 package com.example.outsourcingproject.store.dto.response;
 
 import com.example.outsourcingproject.entity.Store;
-import com.example.outsourcingproject.entity.StoreCategory;
 import java.time.LocalTime;
+import java.util.List;
 import lombok.Getter;
 
 @Getter
@@ -15,8 +15,7 @@ public class CreateStoreResponseDto {
     private final Integer minimumPurchase;
     private final LocalTime opensAt;
     private final LocalTime closesAt;
-    private final StoreCategory storeCategoryOne;
-    private final StoreCategory storeCategoryTwo;
+    private final List<CategoryResponseDto> categories;
 
     public CreateStoreResponseDto(Store store) {
         this.id = store.getId();
@@ -26,7 +25,10 @@ public class CreateStoreResponseDto {
         this.minimumPurchase = store.getMinimumPurchase();
         this.opensAt = store.getOpensAt();
         this.closesAt = store.getClosesAt();
-        this.storeCategoryOne = store.getStoreCategoryOne();
-        this.storeCategoryTwo = store.getStoreCategoryTwo();
+
+        this.categories = store.getStoreCategoryList()
+            .stream()
+            .map(storeCategory -> new CategoryResponseDto(storeCategory.getCategory()))
+            .toList();
     }
 }
